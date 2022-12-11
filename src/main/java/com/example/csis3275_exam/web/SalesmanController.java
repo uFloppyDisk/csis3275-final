@@ -13,18 +13,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+// ------ GITHUB ------
+// https://github.com/uFloppyDisk/csis3275-final.git
+
 @Controller
 public class SalesmanController {
     @Autowired
-    private SalesmanRepository repo;
+    private SalesmanRepository salesmanRepository;
 
     @GetMapping(path = "/")
     public String index(Model model) {
         Salesman salesman = new Salesman();
 
-        List<Salesman> salesmanList = repo.findAll();
+        List<Salesman> salesmanList = salesmanRepository.findAll();
 
-        model.addAttribute("s", salesman);
+        model.addAttribute("new", salesman);
         model.addAttribute("list", salesmanList);
 
         return "index";
@@ -36,19 +39,29 @@ public class SalesmanController {
             return "redirect:/";
         }
 
-        repo.save(salesman);
+        salesmanRepository.save(salesman);
 
         return "redirect:/";
     }
 
     @GetMapping(path = "/edit")
-    public String edit(Model model) {
-        return "redirect:/";
+    public String edit(Model model, @RequestParam(name = "id", defaultValue = "") Long id) {
+        Salesman salesman = salesmanRepository.findById(id).orElse(new Salesman());
+
+        model.addAttribute("s", salesman);
+        return "edit";
     }
 
     @GetMapping(path = "/delete")
     public String delete(Model model, @RequestParam(name = "id", defaultValue = "") Long id) {
-        repo.deleteById(id);
+        salesmanRepository.deleteById(id);
+
+        return "redirect:/";
+    }
+
+    @PostMapping(path = "/edit/save")
+    public String editSave(Model mode, Salesman salesman) {
+        salesmanRepository.save(salesman);
 
         return "redirect:/";
     }

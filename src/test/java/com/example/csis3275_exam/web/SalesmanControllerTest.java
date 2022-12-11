@@ -26,7 +26,7 @@ class SalesmanControllerTest {
 
     @Mock
     @Autowired
-    private SalesmanRepository repo;
+    private SalesmanRepository salesmanRepository;
 
     @Mock
     private MockMvc mockMvc;
@@ -52,7 +52,7 @@ class SalesmanControllerTest {
         list.add(salesman);
         list.add(salesman);
 
-        when(repo.findAll()).thenReturn(list);
+        when(salesmanRepository.findAll()).thenReturn(list);
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -60,8 +60,8 @@ class SalesmanControllerTest {
                 .andExpect(model().attribute("list", hasSize(2)))
                 .andExpect(view().name("index"));
 
-        verify(repo.findAll(), times(1));
-        verifyNoMoreInteractions(repo);
+        verify(salesmanRepository.findAll(), times(1));
+        verifyNoMoreInteractions(salesmanRepository);
     }
 
     @Test

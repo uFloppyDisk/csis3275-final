@@ -5,6 +5,28 @@
     <title>Title</title>
 </head>
 <body>
-
+    <form th:action="@{/edit/save}" th:object="${salesman}" method="POST">
+        <div>
+            <label>Transaction Number:</label>
+            <input disabled th:value="${s.id}">
+        </div>
+        <div>
+            <label>Date of Transaction:</label>
+            <input th:value="${s.dot}">
+        </div>
+        <div>
+            <label>Salesman:</label>
+            <input th:value="${s.salesman}">
+        </div>
+        <div>
+            <label>Amount:</label>
+            <input th:value="${s.amount}">
+        </div>
+        <div>
+            <label>Item Type</label>
+            <input th:value="${s.item}">
+        </div>
+        <button type="submit">Save</button>
+    </form>
 </body>
 </html>

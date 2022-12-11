@@ -14,19 +14,19 @@
         <form th:action="@{/save}" th:object="${salesman}" method="POST">
             <span>
                 <label>Salesman Name:</label>
-                <input name="name" th:value="${s.name}">
+                <input name="name">
             </span>
             <span>
                 <label>Item Type:</label>
-                <input name="item" th:value="${s.item}">
+                <input name="item">
             </span>
             <span>
                 <label>Salesman Name:</label>
-                <input name="amount" type="number" th:value="${s.amount}">
+                <input name="amount" type="number">
             </span>
             <span>
                 <label>Transaction Date:</label>
-                <input name="dot" type="date" th:value="${s.dot}">
+                <input name="dot" type="date">
             </span>
             <button type="submit">Submit</button>
         </form>
