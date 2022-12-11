@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<!--    <link href="/webjars/bootstrap/META">-->
+</head>
+<body>
+    <h1>Final Exam Set B</h1>
+    <h2>Sales Summary Table</h2>
+
+    <div style="background-color: #0055FF;">
+        <form th:action="@{/save}" th:object="${salesman}" method="POST">
+            <span>
+                <label>Salesman Name:</label>
+                <input name="name" th:value="${s.name}">
+            </span>
+            <span>
+                <label>Item Type:</label>
+                <input name="item" th:value="${s.item}">
+            </span>
+            <span>
+                <label>Salesman Name:</label>
+                <input name="amount" type="number" th:value="${s.amount}">
+            </span>
+            <span>
+                <label>Transaction Date:</label>
+                <input name="dot" type="date" th:value="${s.dot}">
+            </span>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <th>Transaction Code</th>
+                <th>Salesman</th>
+                <th>Item</th>
+                <th>Amount</th>
+                <th>Transaction Date</th>
+            </thead>
+            <tbody>
+                <tr th:each="s:${list}">
+                    <td th:text="${s.id}"></td>
+                    <td th:text="${s.name}"></td>
+                    <td th:text="${s.item}"></td>
+                    <td th:text="${s.amount}"></td>
+                    <td th:text="${s.dot}"></td>
+                    <td>
+                        <a th:href="@{/edit}">
+                            <button>Edit</button>
+                        </a>
+                        <a th:href="@{/delete}">
+                            <button>Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
